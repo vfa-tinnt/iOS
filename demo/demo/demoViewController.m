@@ -9,35 +9,40 @@
 #import "demoViewController.h"
 #import "NameAndPrice.h"
 @interface demoViewController ()
-
 @end
 
 @implementation demoViewController
 
-- (void) setBlank {
-    //NameAndPrice *strBlank = [[NameAndPrice alloc] init];
-    NSString *setBlank = @" 	";
-    self.tfName.text= setBlank;
-}
 - (IBAction)actionGetFull:(id)sender {
     
     NSString *getName = self.tfName.text;
     NSString *getPrice = self.tfPrice.text;
+    self.lbFull.numberOfLines = 0;
     self.lbFull.text = [NSString stringWithFormat:@"%@ %@",getName, getPrice];
+    [self.lbFull sizeToFit];
     
 }
 
 - (IBAction)actionGetPrice:(id)sender {
     
     NSString *result = self.tfPrice.text;
+    self.lbPrice.numberOfLines = 0;
     self.lbPrice.text = result;
+    [self.lbPrice sizeToFit];
     [self.tfPrice resignFirstResponder];
     
 }
 - (IBAction)actionGetName:(id)sender {
     
+    
     NSString *result = self.tfName.text;
+    
+    self.lbName.numberOfLines = 0;
     self.lbName.text = result;
+    [self.lbName sizeToFit];
+    //self.lbName.lineBreakMode = UILineBreakModeWordWrap;
+    
+    
     [self.tfName resignFirstResponder];
 }
 
@@ -60,6 +65,17 @@
 //    NSLog(@"%@",strName);
 //    NSLog(@"%@", info);
 //    NSLog(@"%@", strNamePrice);
+    self.tfPrice.returnKeyType = UIReturnKeyDone;
+    
+    
+      
+}
+
+- (BOOL) textFieldShouldReturn:(UITextField *)theTextField {
+    [self.tfName resignFirstResponder];
+    [self.tfPrice resignFirstResponder];
+    
+    
 }
 
 - (void)didReceiveMemoryWarning
